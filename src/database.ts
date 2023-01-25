@@ -1,10 +1,17 @@
-import pkg from 'pg';
-const { Pool } = pkg;
+// import pkg from 'pg';
+// const { Pool } = pkg;
 
-export const connection = new Pool({
-    host:"localhost",
-    port:5432,
-    user:"postgres",
-    password:"Lu050903",
-    database:"people_manegament"
-})
+// export const connection = new Pool({
+//     host:"localhost",
+//     port:5432,
+//     user:"postgres",
+//     password:"Lu050903",
+//     database:"people_manegament"
+// })
+
+import pkg from '@prisma/client'
+
+const {PrismaClient} = pkg
+const prisma = new PrismaClient()
+
+export default prisma

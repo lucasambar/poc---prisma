@@ -26,16 +26,16 @@ export async function validateRequest(
     const { email, departament_id, position_id } = body;
 
     const departamentDB = await findDepartaments(departament_id);
-    if (departamentDB.rowCount === 0)
+    if (departamentDB.length === 0)
       return res.status(404).send("Department not found in database.");
 
     const positionDB = await findPositions(position_id);
-    if (positionDB.rowCount === 0)
+    if (positionDB.length === 0)
       return res.status(404).send("Position not found in database.");
 
     const employeeDB = await findEmployeeByEmail(email);
 
-    if (employeeDB.rowCount !== 0)
+    if (employeeDB.length !== 0)
       return res.status(422).send("Email already used by another employee");
 
 
@@ -67,15 +67,15 @@ export async function validateRequestUpdate(
     const { email, departament_id, position_id } = body;
 
     const departamentDB = await findDepartaments(departament_id);
-    if (departamentDB.rowCount === 0)
+    if (departamentDB.length === 0)
       return res.status(404).send("Department not found in database.");
 
     const positionDB = await findPositions(position_id);
-    if (positionDB.rowCount === 0)
+    if (positionDB.length === 0)
       return res.status(404).send("Position not found in database.");
 
     const employeeDB = await findEmployeeByEmail(email);
-    if (employeeDB.rowCount !== 0 && employeeDB.rows[0].id != id)
+    if (employeeDB.length !== 0 && employeeDB.rows[0].id != id)
       return res.status(422).send("Email already used by another employee");
 
 
@@ -96,7 +96,7 @@ export async function validateEmployeeId(
   const { id } = req.params;
 
   try {
-    const { rowCount } = await findEmployees(Number(id));
+    const { length } = await findEmployees(Number(id));
     if (rowCount === 0)
       return res.status(404).send("Employee not found in database.");
 

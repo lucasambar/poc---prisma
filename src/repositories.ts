@@ -1,20 +1,36 @@
 import { QueryResult } from "pg";
-import { connection } from "./database.js";
+import { prisma } from "./database.js";
 import { GetResponse, QueryParams, RequestBody } from "./protocols.js";
 
-export function findDepartaments(id: number): Promise<QueryResult> {
-  return connection.query("SELECT * FROM departaments WHERE id=$1", [id]);
+export function findDepartaments(id: number) {
+  return prisma.departaments.findMany({
+    where : {
+      id: id,
+    }
+  })
 }
 
-export function findPositions(id: number): Promise<QueryResult> {
-  return connection.query("SELECT * FROM positions WHERE id=$1", [id]);
+export function findPositions(id: number) {
+  return prisma.positions.findMany({
+    where: {
+      id: id,
+    }
+  })
 }
 
-export function findEmployeeByEmail(email: string): Promise<QueryResult> {
-  return connection.query("SELECT * FROM employees WHERE email=$1", [email]);
+export function findEmployeeByEmail(email: string) {
+  return prisma.employees.findMany({
+    where: {
+      email: email,
+    }
+  })
 }
-export function findEmployees(id: number): Promise<QueryResult> {
-  return connection.query("SELECT * FROM employees WHERE id=$1", [id]);
+export function findEmployees(id: number) {
+  return prisma.employees.findMany({
+    where: {
+      id: id,
+    }
+  })
 }
 
 export function selectAll(department: QueryParams, position: QueryParams): Promise<QueryResult<GetResponse>> {
@@ -36,12 +52,9 @@ export function selectAll(department: QueryParams, position: QueryParams): Promi
     return connection.query(baseQuery)
 }
 
-export function insertNewEmployee(body: RequestBody): Promise<QueryResult> {
+export function insertNewEmployee(body: RequestBody) {
   const { name, email, position_id, departament_id } = body;
-  return connection.query(
-    "INSERT INTO employees (name, email, position_id, departament_id) VALUES ($1,$2,$3,$4)",
-    [name, email, position_id, departament_id]
-  );
+  return prisma.employees.create()
 }
 
 export function putEmployee(
