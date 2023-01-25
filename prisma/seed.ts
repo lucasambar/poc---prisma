@@ -1,18 +1,43 @@
 import prisma from "../src/database.js";
 
 async function main() {
+  await prisma.departaments.createMany({
+    data: [
+      {name:"Administration"},
+      {name:"Finance department"},
+      {name:"Marketing"},
+      {name:"Human Resources"},
+      {name:"UX/UI"},
+      {name:"Sales"},
+      {name:"Back-end"}
+    ]
+  })
+  await prisma.positions.createMany({
+    data: [
+      {name:"assistant",
+      salary:250000},
+      {name:"junior",
+      salary:400000},
+      {name:"middle",
+      salary:650000},
+      {name:"senior",
+      salary:800000},
+      {name:"leader",
+      salary:1100000},
+    ]
+  })
   await prisma.employees.createMany({
     data: [
       {
         name: "Maria",
         email: "maria@gmail.com",
-        position_id: 7,
-        departament_id: 7,
+        position_id: 3,
+        departament_id: 4,
       },
       {
         name: "João",
         email: "joao@gmail.com",
-        position_id: 3,
+        position_id: 5,
         departament_id: 3,
       },
       {

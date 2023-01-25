@@ -1,19 +1,20 @@
 import { Request, Response } from "express";
 import {
   deleteEmployee,
-  insertNewEmployee,
-  putEmployee,
-  selectAll,
+  // insertNewEmployee,
+  // putEmployee,
+  // selectAll,
+  upsertEmployee
 } from "./repositories.js";
-import { QueryParams, RequestBody } from "./protocols.js";
-import { calculateBrCharges } from "./services.js";
+import { Employee, NewEmployee, QueryParams } from "./protocols.js";
+import { calculateBrCharges } from "./services/employee.services.js";
 
-export async function get(req: Request, res: Response) {
+// export async function getEmployees (req: Request, res: Response) {
   const department = req.query.department_id as QueryParams
   const position = req.query.position_id as QueryParams
 
   try {
-    const { rows } = await selectAll(department, position);
+    const { rows } = {rows: []}
 
     const response = rows.map((employee) => {
       const playroll_br = calculateBrCharges(employee.salary);
@@ -36,10 +37,10 @@ export async function get(req: Request, res: Response) {
 }
 
 export async function post(req: Request, res: Response) {
-  const body = res.locals.body as RequestBody;
+  const body = res.locals.body as NewEmployee;
 
   try {
-    await insertNewEmployee(body);
+    // await insertNewEmployee(body);
     res.send(201);
   } catch (error) {
     console.log(error);
@@ -48,11 +49,12 @@ export async function post(req: Request, res: Response) {
 }
 
 export async function put(req: Request, res: Response) {
-  const body = res.locals.body as RequestBody;
+  const body = res.locals.body as NewEmployee;
   const id = res.locals.id as number;
+  const putBody: Employee = {id, ...body}
 
   try {
-    await putEmployee(body, id);
+    await upsertEmployee(putBody)
     res.sendStatus(201);
   } catch (error) {
     console.log(error);
@@ -71,3 +73,4 @@ export async function deleteOne(req: Request, res: Response) {
     res.sendStatus(500);
   }
 }
+
