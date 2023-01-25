@@ -49,22 +49,3 @@ export async function validateRequestUpdate(
   }
 }
 
-export async function validateEmployeeId(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  const { id } = req.params;
-
-  try {
-    const { length } = await findEmployees(Number(id));
-    if (rowCount === 0)
-      return res.status(404).send("Employee not found in database.");
-
-    res.locals.id = id;
-    next();
-  } catch (erro) {
-    console.log(erro);
-    res.sendStatus(500);
-  }
-}

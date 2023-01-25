@@ -19,7 +19,7 @@ export function findPositions(id: number) {
 }
 
 export function findEmployeeByEmail(email: string) {
-  return prisma.employees.findFirstOrThrow({
+  return prisma.employees.findFirst({
     where: {
       email: email,
     }
