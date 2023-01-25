@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { QueryParams } from "../protocols.js";
-import { selectAll } from "../repositories/employee.repositories.js";
+import { selectAll, upsertEmployee } from "../repositories/employee.repositories.js";
 import { calculateBrCharges } from "../services/employee.services.js";
 
 export async function getEmployees (req: Request, res: Response) {
@@ -23,5 +23,16 @@ export async function getEmployees (req: Request, res: Response) {
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
+  }
+}
+export async function upsert (req: Request, res: Response) {
+  const body = res.locals.body
+
+  try {
+    await upsertEmployee(body)
+    res.sendStatus(201)
+  } catch (erro) {
+    console.log(erro)
+    res.sendStatus(500)
   }
 }

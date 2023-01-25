@@ -1,5 +1,5 @@
 import express from "express";
-import { getEmployees } from "../controllers/employee.controller.js";
+import { getEmployees, upsert } from "../controllers/employee.controller.js";
 import {
   validateBody,
   validateEmployeeId,
@@ -13,8 +13,9 @@ router.post("/employee",
     res.locals.body = req.body;
     next();
   },
-  validateBody
+  validateBody,
+  upsert
 );
-router.put("/employee/:id", validateEmployeeId, validateBody);
+router.put("/employee/:id", validateEmployeeId, validateBody, upsert);
 router.delete("/employee/:id", validateEmployeeId)
 export default router;

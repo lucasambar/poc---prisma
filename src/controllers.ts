@@ -9,32 +9,6 @@ import {
 import { Employee, NewEmployee, QueryParams } from "./protocols.js";
 import { calculateBrCharges } from "./services/employee.services.js";
 
-// export async function getEmployees (req: Request, res: Response) {
-  const department = req.query.department_id as QueryParams
-  const position = req.query.position_id as QueryParams
-
-  try {
-    const { rows } = {rows: []}
-
-    const response = rows.map((employee) => {
-      const playroll_br = calculateBrCharges(employee.salary);
-      const aux = {
-        id: employee.id,
-        name: employee.name,
-        email: employee.email,
-        department: employee.departament,
-        position: employee.position,
-        playroll_br,
-      };
-      return aux;
-    });
-
-    res.send(response);
-  } catch (erro) {
-    console.log(erro);
-    res.sendStatus(500);
-  }
-}
 
 export async function post(req: Request, res: Response) {
   const body = res.locals.body as NewEmployee;
