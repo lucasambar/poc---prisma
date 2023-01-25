@@ -1,4 +1,4 @@
-import { findDepartaments, findEmployees, findPositions } from "./repositories.js";
+import { findDepartaments, findEmployees, findPositions } from "./repositories/employee.repositories.js";
 
 export default async function testes (req, res) {
     const {id} = req.body

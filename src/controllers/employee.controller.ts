@@ -1,10 +1,14 @@
 import { Request, Response } from "express";
-import { selectAll } from "../repositories.js";
+import { QueryParams } from "../protocols.js";
+import { selectAll } from "../repositories/employee.repositories.js";
 import { calculateBrCharges } from "../services/employee.services.js";
 
 export async function getEmployees (req: Request, res: Response) {
+  const department = Number(req.query.department_id) as QueryParams
+  const position = Number(req.query.position_id) as QueryParams
+
   try {
-    const rows = await selectAll()
+    const rows = await selectAll(department, position)
     const response = rows.map(emp => {
         return {
             id: emp.id,

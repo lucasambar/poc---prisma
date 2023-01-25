@@ -17,4 +17,4 @@ export type GetResponse = {
     departament: string
 }
 
-export type QueryParams = string | undefined
+export type QueryParams = number | undefined

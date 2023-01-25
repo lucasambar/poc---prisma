@@ -5,7 +5,7 @@ import {
   findEmployeeByEmail,
   findPositions,
   findEmployees,
-} from "../repositories.js";
+} from "../repositories/employee.repositories.js";
 import { employeeSchema } from "../schemas.js";
 
 export async function validateBody(

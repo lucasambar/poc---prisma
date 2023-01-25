@@ -5,7 +5,7 @@ import {
   // putEmployee,
   // selectAll,
   upsertEmployee
-} from "./repositories.js";
+} from "./repositories/employee.repositories.js";
 import { Employee, NewEmployee, QueryParams } from "./protocols.js";
 import { calculateBrCharges } from "./services/employee.services.js";
 
