@@ -29,6 +29,7 @@ export function findEmployeeByEmail(email: string) {
     },
   });
 }
+
 export function findEmployees(id: number) {
   return prisma.employees.findFirst({
     where: {
@@ -86,23 +87,6 @@ export function upsertEmployee(body: Employee) {
     },
   });
 }
-
-// export function putEmployee(
-//   body: RequestBody,
-//   id: number
-// ): Promise<QueryResult> {
-//   const { name, email, position_id, departament_id } = body;
-//   return connection.query(
-//     `UPDATE employees
-//      SET
-//       name=$1,
-//       email=$2,
-//       position_id=$3,
-//       departament_id=$4
-//      WHERE id=$5`,
-//     [name, email, position_id, departament_id, id]
-//   );
-// }
 
 export function deleteEmployee(id: number) {
   return prisma.employees.delete({
