@@ -1,29 +1,14 @@
 import { Request, Response } from "express";
 import { QueryParams } from "../protocols.js";
 import { selectAll, upsertEmployee, deleteEmployee } from "../repositories/employee.repositories.js";
-import { calculateBrCharges } from "../services/employee.services.js";
+import employeeServices from "../services/employee.services.js";
 
 export async function getEmployees (req: Request, res: Response) {
   const department = Number(req.query.department_id) as QueryParams
   const position = Number(req.query.position_id) as QueryParams
 
-  try {
-    const rows = await selectAll(department, position)
-    const response = rows.map(emp => {
-        return {
-            id: emp.id,
-            name: emp.name,
-            email: emp.email,
-            department: emp.departaments.name,
-            position: emp.positions.name,
-            payrollBr: calculateBrCharges(emp.positions.salary),
-        }
-    })
-    res.send(response)
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
+  const response = employeeServices.get(department, position)
+  res.send(response)
 }
 export async function upsert (req: Request, res: Response) {
   const body = res.locals.body
