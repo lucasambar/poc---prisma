@@ -3,7 +3,10 @@
 ---
 API to manage the employees of a tech business. You can register the departments, positions and workers here.
 
-**POST: /employess**
+## Employee entity
+Routes to manege employee's business.
+
+**POST: /employee**
 
 Register a new employee at this business.
 
@@ -28,7 +31,7 @@ Departaments & positions references
   7 | Back-end            |
   8 | Front-end           |
 
-**GET: /employess**
+**GET: /employee**
 
 List all employess that work at this business.
 
@@ -51,10 +54,9 @@ response:
     }
 }
 ```
-
-
 Try using this query params: departments_id or position_id or both! So you can filter results.
-**PUT: /employess/:id**
+
+**PUT: /employee/:id**
 
 Update an employees information using their id.
 
@@ -66,6 +68,22 @@ Update an employees information using their id.
     "departament_id": "reference of the departament"
 }
 ```
-**DELETE: /employess/:id**
+**DELETE: /employee/:id**
 
-DElete an employee from the business database using their id.
+Delete an employee from the business database using their id.
+
+## Department entity
+Routes to manege the departments part of a business.
+
+**GET: /departments**
+
+Get an overview of all departments of your business.
+
+Response:
+```JSON
+{
+    "id": "ids used to identificate department in database",
+    "name": "department's name",
+    "employeesCount": "number of employees that work at this department"
+}
+```
