@@ -23,7 +23,8 @@ export async function validateBody(
       .status(422)
       .send(`Department already inserted in DB with id: ${departmentDB.id}`);
 
-
+  res.locals.body = body
+  next()
 }
 
 

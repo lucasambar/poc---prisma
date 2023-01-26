@@ -1,4 +1,6 @@
+import { departaments } from "@prisma/client";
 import prisma from "../database.js";
+import { NewDepartment } from "../protocols.js";
 
 export function selectDepartments ()  {
     return prisma.departaments.findMany()
@@ -29,4 +31,14 @@ export function selectDepartmentById (id: number) {
             id: id,
         }
     })
+}
+
+export function upsertDepartment (body: departaments) {
+    return prisma.departaments.upsert({
+        create: body as NewDepartment,
+        update: body,
+        where: {
+          id: body.id || 0,
+        },
+        })
 }
