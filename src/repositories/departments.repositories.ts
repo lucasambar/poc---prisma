@@ -14,3 +14,19 @@ export function selectEmployeesCount (department_id: number) {
         }
     })
 }
+
+export function selectDepartmentByName (name: string) {
+    return prisma.departaments.findFirst({
+        where: {
+            name: name
+        }
+    })
+}
+
+export function selectDepartmentById (id: number) {
+    return prisma.departaments.findFirst({
+        where: {
+            id: id,
+        }
+    })
+}

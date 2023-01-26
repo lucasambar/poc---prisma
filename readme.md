@@ -19,17 +19,7 @@ body:
     "departament_id": "reference of the departament"
 }
 ```
-Departaments & positions references
- id | name                | id |   name    | salary    
-----|---------------------|----|-----------|---------
-  1 | Administration      |  1 | assistant | 2500000
-  2 | Finance department  |  2 | junior    |  400000
-  3 | Marketing           |  3 | middle    | 6500000
-  4 | Human Resources     |  6 | senior    |  800000
-  5 | UX/UI               |  7 | leader    | 1100000 
-  6 | Sales               |
-  7 | Back-end            |
-  8 | Front-end           |
+You can get all he departments and positions ids using routes - get: /departments and get: /positions.
 
 **GET: /employee**
 

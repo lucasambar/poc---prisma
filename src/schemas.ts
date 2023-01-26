@@ -7,3 +7,8 @@ export const employeeSchema = Joi.object({
     position_id: Joi.number().required(),
     departament_id: Joi.number().required()
 })
+
+export const departmentSchema = Joi.object({
+    id: Joi.number(),
+    name:Joi.string().min(3).required(),
+})

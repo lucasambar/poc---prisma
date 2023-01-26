@@ -18,3 +18,10 @@ export type GetResponse = {
 }
 
 export type QueryParams = number | undefined
+
+export type DepartmentEntity = {
+    id: number,
+    name: string
+}
+export type NewDepartment = Omit<DepartmentEntity, "id">
+export type Department = Partial<DepartmentEntity>
