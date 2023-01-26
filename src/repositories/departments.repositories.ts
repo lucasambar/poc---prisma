@@ -42,3 +42,11 @@ export function upsertDepartment (body: departaments) {
         },
         })
 }
+
+export function deleteDepartment (id: number) {
+    return prisma.departaments.delete({
+        where: {
+            id: id
+        }
+    })
+}
