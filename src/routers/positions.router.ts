@@ -1,11 +1,15 @@
 import { Router } from "express";
-import { getDepartments } from "../controllers/departments.controllers.js";
+import { deleteOne, getPositions, insertOrUpdatePosition } from "../controllers/positions.controllers.js";
+import { validateBody, validatePositonId } from "../middlewares/positions.middlewares.js";
 
 const router = Router()
 
-router.get("/position", getDepartments)
-router.post("/position")
-router.put("/position")
-router.delete("/position")
+router.get("/positions", getPositions)
+router.post("/positions", (req, res, next) => {
+    res.locals.body = req.body
+    next()
+}, validateBody, insertOrUpdatePosition) 
+router.put("/positions/:id", validatePositonId, validateBody, insertOrUpdatePosition)
+router.delete("/positions/:id", validatePositonId, deleteOne)
 
 export default router

@@ -25,3 +25,11 @@ export type DepartmentEntity = {
 }
 export type NewDepartment = Omit<DepartmentEntity, "id">
 export type Department = Partial<DepartmentEntity>
+
+export type PositionEntity = {
+    id: number,
+    name: string,
+    salary: number
+}
+export type NewPosition = Omit<PositionEntity, "id">
+export type Position = Partial<PositionEntity>

@@ -1,4 +1,4 @@
-import Joi from "joi"
+import Joi, { number } from "joi"
 
 export const employeeSchema = Joi.object({
     id: Joi.number(),
@@ -11,4 +11,10 @@ export const employeeSchema = Joi.object({
 export const departmentSchema = Joi.object({
     id: Joi.number(),
     name:Joi.string().min(3).required(),
+})
+
+export const positionSchema = Joi.object({
+    id: Joi.number(),
+    name:Joi.string().min(3).required(),
+    salary: Joi.number().greater(130200).required()
 })
