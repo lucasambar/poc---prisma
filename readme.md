@@ -77,3 +77,65 @@ Response:
     "employeesCount": "number of employees that work at this department"
 }
 ```
+**POST: /departments**
+
+Insert a new department in database.
+Body:
+```JSON
+{
+    "name": "department's name must be unique",
+}
+```
+**PUT: /departments/:id**
+
+Change a department name in database.
+Body:
+```JSON
+{
+    "name": "department's name must be unique",
+}
+```
+**DELETE: /departments/:id**
+
+Delete a department in database using their id.
+
+## Position entity
+Routes to manege the positions and salaries of a business.
+
+**GET: /positions**
+
+Get an overview of all positions of your business.
+
+Response:
+```JSON
+{
+    "id": "ids used to identificate positon in database",
+    "name": "position's name",
+    "salary": "salary for this position in cents"
+}
+```
+**POST: /positions**
+
+Insert a new positon in database.
+
+Body:
+```JSON
+{
+    "name": "position's name must be unique",
+    "salary": "value in cents, already set to be greater than the minimun in brazilian's law"
+}
+```
+**PUT: /departments/:id**
+
+Change a position's name or salary in database.
+
+Body:
+```JSON
+{
+    "name": "position's name must be unique",
+    "salary": "value in cents, already set to be greater than the minimun in brazilian's law"
+}
+```
+**DELETE: /departments/:id**
+
+Delete a position in database using their id.

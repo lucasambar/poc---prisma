@@ -18,7 +18,7 @@ export async function validateBody(
   }
 
   const positionDB = await selectPositionByName(body.name)
-  if (positionDB)
+  if (positionDB && positionDB.id !== body.id)
     return res
       .status(422)
       .send(`Position already inserted in DB with id: ${positionDB.id}`);
