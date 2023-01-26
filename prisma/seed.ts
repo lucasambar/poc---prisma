@@ -9,7 +9,8 @@ async function main() {
       {name:"Human Resources"},
       {name:"UX/UI"},
       {name:"Sales"},
-      {name:"Back-end"}
+      {name:"Back-end"}, 
+      {name:"Front-end"}
     ]
   })
   await prisma.positions.createMany({
