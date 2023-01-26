@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { deleteOne, getPositions, insertOrUpdatePosition } from "../controllers/positions.controllers.js";
-import { validateBody, validatePositonId } from "../middlewares/positions.middlewares.js";
+import { employeePosition, validateBody, validatePositonId } from "../middlewares/positions.middlewares.js";
 
 const router = Router()
 
@@ -10,6 +10,6 @@ router.post("/positions", (req, res, next) => {
     next()
 }, validateBody, insertOrUpdatePosition) 
 router.put("/positions/:id", validatePositonId, validateBody, insertOrUpdatePosition)
-router.delete("/positions/:id", validatePositonId, deleteOne)
+router.delete("/positions/:id", validatePositonId, employeePosition, deleteOne)
 
 export default router

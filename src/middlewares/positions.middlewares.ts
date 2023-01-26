@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { Department, Position } from "../protocols.js";
-import { selectPositionById, selectPositionByName } from "../repositories/positions.repositories.js";
+import { selectEmployeeByPosition, selectPositionById, selectPositionByName } from "../repositories/positions.repositories.js";
 import { positionSchema } from "../schemas.js";
 
 export async function validateBody(
@@ -50,4 +50,26 @@ export async function validatePositonId(
       res.sendStatus(500);
     }
   }
+
+  export async function employeePosition(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    const body = res.locals.body;
+  
+    const employees = await selectEmployeeByPosition(body.id)
+    if (employees)
+      return res
+        .status(401)
+        .send({
+          message: "This employees should be moved to other positions or deleted from database before delete this position",
+          employees
+        }
+        );
+    
+    res.locals.body = body;
+    next()
+  }
+  
   

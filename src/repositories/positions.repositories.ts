@@ -50,3 +50,11 @@ export function deletePosition (id: number) {
         }
     })
 }
+
+export function selectEmployeeByPosition (id: number) {
+    return prisma.employees.findMany({
+        where: {
+            position_id: id
+        }
+    })
+}
