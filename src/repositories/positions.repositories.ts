@@ -3,18 +3,7 @@ import prisma from "../database.js";
 import { NewDepartment, NewPosition, Position } from "../protocols.js";
 
 export function selectPositions ()  {
-    return prisma.positions.findMany()
-}
-
-export function selectEmployeesCount (department_id: number) {
-    return prisma.employees.aggregate({
-        _count: {
-            department_id: true,
-        },
-        where:  {
-            department_id: department_id,
-        }
-    })
+    return prisma.positions.findMany({})
 }
 
 export function selectPositionByName (name: string) {
