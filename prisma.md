@@ -1,9 +1,0 @@
-## Prisma
- 
-CREAT
-
-READ
-
-UPDATE
-
-DELETE

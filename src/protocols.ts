@@ -33,3 +33,8 @@ export type PositionEntity = {
 }
 export type NewPosition = Omit<PositionEntity, "id">
 export type Position = Partial<PositionEntity>
+
+export type Error = {
+    status: number,
+    message: string
+}

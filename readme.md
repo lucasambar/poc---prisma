@@ -2,7 +2,6 @@
 ### Prove of concepts  - TypeScript
 ---
 API to manage the employees of a tech business. You can register the departments, positions and workers here.
-
 ## Employee entity
 Routes to manege employee's business.
 

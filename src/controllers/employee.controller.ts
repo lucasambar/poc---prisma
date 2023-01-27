@@ -7,7 +7,7 @@ export async function getEmployees (req: Request, res: Response) {
   const department = Number(req.query.department_id) as QueryParams
   const position = Number(req.query.position_id) as QueryParams
 
-  const response = employeeServices.get(department, position)
+  const response = await employeeServices.get(department, position)
   res.send(response)
 }
 export async function upsert (req: Request, res: Response) {
