@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { deleteOne, getPositions, insertOrUpdatePosition } from "../controllers/positions.controllers.js";
 import { bodyValidation } from "../middlewares/bodyValidation.js";
-import { employeePosition, validateBody, validatePositonId } from "../middlewares/positions.middlewares.js";
 import { positionSchema } from "../schemas.js";
 
 const router = Router()
