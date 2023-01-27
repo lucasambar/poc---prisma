@@ -54,23 +54,3 @@ export async function validateDepartmentId(
   }
 }
 
-export async function employeesDepartment(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  const body = res.locals.body;
-
-  const employees = await selectEmployeeByDepartment(body.id) as Employee[];
-  if (employees)
-    return res
-      .status(401)
-      .send({
-        message: "This employees should be moved to other departments or deleted from database before delete this department",
-        employees
-      }
-      );
-  
-  res.locals.body = body;
-  next()
-}

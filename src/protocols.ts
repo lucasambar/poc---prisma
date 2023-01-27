@@ -36,5 +36,5 @@ export type Position = Partial<PositionEntity>
 
 export type Error = {
     status: number,
-    message: string
+    message: any
 }

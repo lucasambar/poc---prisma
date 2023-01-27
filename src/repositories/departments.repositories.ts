@@ -34,11 +34,12 @@ export function selectDepartmentById (id: number) {
 }
 
 export function upsertDepartment (body: departaments) {
+    const id = Number(body.id)
     return prisma.departaments.upsert({
-        create: body as NewDepartment,
-        update: body,
+        create: {name: body.name} as NewDepartment,
+        update: {id, name: body.name},
         where: {
-          id: body.id || 0,
+          id: id || 0,
         },
         })
 }

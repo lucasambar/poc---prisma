@@ -4,18 +4,21 @@ import { deleteDepartment, upsertDepartment } from "../repositories/departments.
 import departmentsServices from "../services/departments.services.js";
 
 export async function getDepartments (req: Request, res: Response) {
-    const a = await departmentsServices.getDepartments()
-    res.send(a)
+    const response = await departmentsServices.getDepartments()
+    res.send(response)
 }
 
 export async function insertOrUpdateDepartment (req: Request, res: Response) {
-    const body = res.locals.body as DepartmentEntity
-    await upsertDepartment(body)
+    const body = req.body as DepartmentEntity
+    const id = req.params.id;
+    
+    await departmentsServices.upsertDepartments({id, ...body})
     res.sendStatus(201)
 }
 
 export async function deleteOne (req: Request, res: Response) {
-    const id = Number(res.locals.body.id)
-    await deleteDepartment(id)
+    const id = Number(req.params.id)
+
+    await departmentsServices.deleteOne(id)
     res.sendStatus(204)
 }
