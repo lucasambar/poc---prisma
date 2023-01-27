@@ -17,7 +17,7 @@ async function getDepartments() {
     response.push({
       id: a.id,
       name: a.name,
-      employeeCount: count._count.departament_id,
+      employeeCount: count._count.department_id,
     });
   }
   return response;

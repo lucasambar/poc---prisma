@@ -15,7 +15,7 @@ body:
     "name": "how they want to be called by",
     "email": "must be a unique email per worker",
     "position_id": "reference of the position",
-    "departament_id": "reference of the departament"
+    "department_id": "reference of the department"
 }
 ```
 You can get all he departments and positions ids using routes - get: /departments and get: /positions.
@@ -31,7 +31,7 @@ response:
     "name": "name registered",
     "email": "contact email",
     "position": "level in the business",
-    "departament": "departament that the employees works",
+    "department": "department that the employees works",
     //following values of payrolll for each employee based in brazilian work laws
     "payroll_br" : { 
       "gross_salary": "base salary in the position",
@@ -54,7 +54,7 @@ Update an employees information using their id.
     "name": "how they want to be called by",
     "email": "must be a unique email per worker",
     "position_id": "reference of the position",
-    "departament_id": "reference of the departament"
+    "department_id": "reference of the department"
 }
 ```
 **DELETE: /employee/:id**

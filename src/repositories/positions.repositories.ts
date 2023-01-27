@@ -1,4 +1,4 @@
-import { departaments } from "@prisma/client";
+import { departments } from "@prisma/client";
 import prisma from "../database.js";
 import { NewDepartment, NewPosition, Position } from "../protocols.js";
 
@@ -9,10 +9,10 @@ export function selectPositions ()  {
 export function selectEmployeesCount (department_id: number) {
     return prisma.employees.aggregate({
         _count: {
-            departament_id: true,
+            department_id: true,
         },
         where:  {
-            departament_id: department_id,
+            department_id: department_id,
         }
     })
 }

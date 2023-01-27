@@ -1,24 +1,24 @@
-import { departaments } from "@prisma/client";
+import { departments } from "@prisma/client";
 import prisma from "../database.js";
 import { NewDepartment } from "../protocols.js";
 
 export function selectDepartments ()  {
-    return prisma.departaments.findMany()
+    return prisma.departments.findMany()
 }
 
 export function selectEmployeesCount (department_id: number) {
     return prisma.employees.aggregate({
         _count: {
-            departament_id: true,
+            department_id: true,
         },
         where:  {
-            departament_id: department_id,
+            department_id: department_id,
         }
     })
 }
 
 export function selectDepartmentByName (name: string) {
-    return prisma.departaments.findFirst({
+    return prisma.departments.findFirst({
         where: {
             name: name
         }
@@ -26,16 +26,16 @@ export function selectDepartmentByName (name: string) {
 }
 
 export function selectDepartmentById (id: number) {
-    return prisma.departaments.findFirst({
+    return prisma.departments.findFirst({
         where: {
             id: id,
         }
     })
 }
 
-export function upsertDepartment (body: departaments) {
+export function upsertDepartment (body: departments) {
     const id = Number(body.id)
-    return prisma.departaments.upsert({
+    return prisma.departments.upsert({
         create: {name: body.name} as NewDepartment,
         update: {id, name: body.name},
         where: {
@@ -45,7 +45,7 @@ export function upsertDepartment (body: departaments) {
 }
 
 export function deleteDepartment (id: number) {
-    return prisma.departaments.delete({
+    return prisma.departments.delete({
         where: {
             id: id
         }
@@ -55,7 +55,7 @@ export function deleteDepartment (id: number) {
 export function selectEmployeeByDepartment(id: number) {
     return prisma.employees.findMany({
         where: {
-            departament_id: id
+            department_id: id
         }
     })
 }

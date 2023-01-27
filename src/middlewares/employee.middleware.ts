@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { Employee, NewEmployee } from "../protocols.js";
 import {
-  findDepartaments,
+  finddepartments,
   findEmployeeByEmail,
   findPositions,
   findEmployees,
@@ -23,10 +23,10 @@ export async function validateBody(
   }
 
   try {
-    const { email, departament_id, position_id } = body;
+    const { email, department_id, position_id } = body;
 
-    const departamentDB = await findDepartaments(departament_id);
-    if (!departamentDB)
+    const departmentDB = await finddepartments(department_id);
+    if (!departmentDB)
       return res.status(404).send("Department not found in database.");
 
     const positionDB = await findPositions(position_id);

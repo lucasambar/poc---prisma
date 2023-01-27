@@ -6,8 +6,8 @@ import {
   QueryParams,
 } from "../protocols.js";
 
-export function findDepartaments(id: number) {
-  return prisma.departaments.findFirst({
+export function finddepartments(id: number) {
+  return prisma.departments.findFirst({
     where: {
       id: id,
     },
@@ -42,18 +42,18 @@ export function selectAll(department: QueryParams, position: QueryParams) {
   if (position && department)
     return prisma.employees.findMany({
       include: {
-        departaments: true,
+        departments: true,
         positions: true,
       },
       where: {
-        departament_id: department,
+        department_id: department,
         position_id: position,
       },
     });
   if (position)
     return prisma.employees.findMany({
       include: {
-        departaments: true,
+        departments: true,
         positions: true,
       },
       where: {
@@ -63,16 +63,16 @@ export function selectAll(department: QueryParams, position: QueryParams) {
   if (department)
     return prisma.employees.findMany({
       include: {
-        departaments: true,
+        departments: true,
         positions: true,
       },
       where: {
-        departament_id: department,
+        department_id: department,
       },
     });
   return prisma.employees.findMany({
     include: {
-      departaments: true,
+      departments: true,
       positions: true,
     },
   });

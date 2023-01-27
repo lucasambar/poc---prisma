@@ -1,7 +1,7 @@
 import prisma from "../src/database.js";
 
 async function main() {
-  await prisma.departaments.createMany({
+  await prisma.departments.createMany({
     data: [
       {name:"Administration"},
       {name:"Finance department"},
@@ -33,19 +33,19 @@ async function main() {
         name: "Maria",
         email: "maria@gmail.com",
         position_id: 3,
-        departament_id: 4,
+        department_id: 4,
       },
       {
         name: "João",
         email: "joao@gmail.com",
         position_id: 5,
-        departament_id: 3,
+        department_id: 3,
       },
       {
         name: "André",
         email: "andre@gmail.com",
         position_id: 1,
-        departament_id: 6,
+        department_id: 6,
       },
     ],
   });

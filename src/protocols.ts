@@ -3,7 +3,7 @@ export type EmployeeEntity = {
     name: string,
     email: string,
     position_id: number,
-    departament_id: number
+    department_id: number
 }
 export type NewEmployee = Omit<EmployeeEntity, "id">
 export type Employee = Partial<EmployeeEntity>
@@ -14,7 +14,7 @@ export type GetResponse = {
     email: string,
     position: string,
     salary: number,
-    departament: string
+    department: string
 }
 
 export type QueryParams = number | undefined
